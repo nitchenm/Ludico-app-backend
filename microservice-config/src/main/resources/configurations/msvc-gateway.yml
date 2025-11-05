@@ -1,0 +1,42 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: msvc-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: users
+          uri: http://localhost:8050
+          predicates:             
+            - Path=/api/v1/users/**
+        - id: sale
+          uri: http://localhost:9090
+          predicates:
+            - Path=/api/v1/sale/**
+        - id: product
+          uri: http://localhost:8060
+          predicates:
+            - Path=/api/v1/product/**
+        - id: branch
+          uri: http://localhost:8070
+          predicates:
+            - Path=/api/v1/branches/**
+eureka:
+  client:
+    register-with-eureka: false
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  gateway:
+    enabled: true

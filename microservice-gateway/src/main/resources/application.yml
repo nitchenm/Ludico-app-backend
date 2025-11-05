@@ -1,0 +1,13 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: msvc-gateway
+  config:
+    import: 'configserver:http://localhost:8888'
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+logging:
+          level:
+            org.springframework.web.HttpLogging: TRACE
+            org.springframework.cloud.gateway: DEBUG

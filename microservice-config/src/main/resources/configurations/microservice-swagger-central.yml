@@ -1,0 +1,18 @@
+server:
+  port: 8040
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: user
+        url: http://localhost:8050/v3/api-docs
+      - name: branch
+        url: http://localhost:8070/v3/api-docs
+      - name: sale
+        url: http://localhost:9090/v3/api-docs
+      - name: product
+        url: http://localhost:8060/v3/api-docs
