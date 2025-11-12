@@ -46,12 +46,7 @@ public class UserService {
 
         User userSearched = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
 
-        UserDTO userFound = new UserDTO();
-
-        userFound.setId(userSearched.getId());
-        userFound.setName(userSearched.getName());
-        userFound.setEmail(userSearched.getEmail());
-        userFound.setRol(userSearched.getRol());
+        UserDTO userFound = convertToDTO(userSearched);
 
         return userFound;
         //return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found"));
@@ -70,22 +65,20 @@ public class UserService {
 
         User savedUser = userRepository.save(newUser);
 
-        UserDTO returningUser = new UserDTO();
-
-        returningUser.setId(savedUser.getId());
-        returningUser.setName(savedUser.getName());
-        returningUser.setEmail(savedUser.getEmail());
-        returningUser.setRol(savedUser.getRol());
+        UserDTO returningUser = convertToDTO(newUser);
 
         return returningUser;
     }
 
-    //recuerda, es un void porque no necesitamos que retorne algo cuando
-    //se elimina
-    // Se elimina un usuario por su id
     public void deleteById(Long id){
+        
         //¿Esto se podrá mejorar? ¿Manejo de errores?
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+            
+        } catch (Exception e) {
+            
+        }
     }
 
     //se actualiza usuario

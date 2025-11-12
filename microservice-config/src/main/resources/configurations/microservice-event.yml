@@ -1,0 +1,36 @@
+server:
+  port: 8025
+
+spring:
+  application:
+    name: microservice-event
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ludicodbts
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    sql:
+      init:
+        mode: always
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+jwt:
+  secret: aW1wb3J0YW50X3NlY3JldF9jaGFuZ2VfdGhpc19pbl9wcm9kdWN0aW9uX3RvX2tSMjU2X2tleQ==
+  expiration-ms: 3600000
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+file:
+  upload:
+    max-size: 5242880
+    directory: uploads/events

@@ -1,0 +1,54 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: microservice-event
+  profiles:
+    active: dev
+  cloud:
+    config:
+      fail-fast: false
+    discovery:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8025
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: false
+
+event:
+  file:
+    storage: uploads
+    max-size-bytes: 5242880
+
+google:
+  maps:
+    api:
+      key:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: aW1wb3J0YW50X3NlY3JldF9jaGFuZ2VfdGhpc19pbl9wcm9kdWN0aW9uX3RvX2tSMjU2X2tleQ==
+  expiration-ms: 3600000

@@ -1,5 +1,5 @@
 server:
-  port: 8040
+  port: 8900
 
 spring:
   autoconfigure:
@@ -8,11 +8,7 @@ spring:
 springdoc:
   swagger-ui:
     urls:
-      - name: user
-        url: http://localhost:8050/v3/api-docs
-      - name: branch
-        url: http://localhost:8070/v3/api-docs
-      - name: sale
-        url: http://localhost:9090/v3/api-docs
-      - name: product
-        url: http://localhost:8060/v3/api-docs
+      - name: User Service
+        url: http://localhost:8000/v3/api-docs/user
+      - name: Event Service
+        url: http://localhost:8000/v3/api-docs/event

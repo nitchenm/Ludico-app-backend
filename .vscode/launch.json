@@ -2,6 +2,17 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Spring Boot-MicroserviceEventApplication<microservice-event>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.acopl.microservice_event.MicroserviceEventApplication",
+            "projectName": "microservice-event",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=54765 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-event"
+        },
+        {
+            "type": "java",
             "name": "MicroserviceGatewayApplication",
             "request": "launch",
             "mainClass": "com.acopl.microservice_gateway.MicroserviceGatewayApplication",

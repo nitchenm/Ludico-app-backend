@@ -5,7 +5,7 @@ spring:
     name: msvc-user
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ecomarketdtbs
+    url: jdbc:mysql://localhost:3306/ludicodbts
     username: root
     password:
   jpa:
@@ -17,6 +17,10 @@ spring:
     show-sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+jwt:
+  secret: aW1wb3J0YW50X3NlY3JldF9jaGFuZ2VfdGhpc19pbl9wcm9kdWN0aW9uX3RvX2tSMjU2X2tleQ==
+  expiration-ms: 3600000
 
 eureka:
   instance:

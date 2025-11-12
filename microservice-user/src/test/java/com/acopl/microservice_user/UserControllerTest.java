@@ -8,6 +8,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.context.annotation.Import;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,12 +20,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.acopl.microservice_user.controller.UserController;
+import com.acopl.microservice_user.config.TestSecurityConfig;
 import com.acopl.microservice_user.dto.SaleDTO;
 import com.acopl.microservice_user.dto.UserDTO;
 import com.acopl.microservice_user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(UserController.class)
+@Import(TestSecurityConfig.class)
+@AutoConfigureMockMvc(addFilters = false)
 class UserControllerTest {
 
     @Autowired

@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Ludico - Flujo Completo",
+    "description": "Flujo completo: Registrar usuario → Login → Crear evento → Unirse a evento",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Registrar Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8050/auth/register?email=juan@ejemplo.com&password=password123&name=Juan Pérez&rol=USER",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8050",
+          "path": ["auth", "register"],
+          "query": [
+            {
+              "key": "email",
+              "value": "juan@ejemplo.com"
+            },
+            {
+              "key": "password",
+              "value": "password123"
+            },
+            {
+              "key": "name",
+              "value": "Juan Pérez"
+            },
+            {
+              "key": "rol",
+              "value": "USER"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Login (obtener Token)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8050/auth/login?email=juan@ejemplo.com&password=password123",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8050",
+          "path": ["auth", "login"],
+          "query": [
+            {
+              "key": "email",
+              "value": "juan@ejemplo.com"
+            },
+            {
+              "key": "password",
+              "value": "password123"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Crear Evento",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Torneo de Magic The Gathering\",\n  \"description\": \"Torneo amistoso de MTG en el parque central\",\n  \"gameType\": \"MTG\",\n  \"latitude\": -33.8688,\n  \"longitude\": -56.1645,\n  \"startsAt\": \"2025-11-15T18:00:00\",\n  \"endsAt\": \"2025-11-15T22:00:00\",\n  \"capacity\": 8,\n  \"creatorId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "4. Listar todos los Eventos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events"]
+        }
+      }
+    },
+    {
+      "name": "5. Buscar Eventos por Tipo (MTG)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/events/type/MTG",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events", "type", "MTG"]
+        }
+      }
+    },
+    {
+      "name": "6. Unirse a Evento (Event ID: 1)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/events/1/join",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events", "1", "join"]
+        }
+      }
+    },
+    {
+      "name": "7. Abandonar Evento (Event ID: 1)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/events/1/leave",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "events", "1", "leave"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "",
+      "type": "string",
+      "description": "Token JWT obtenido del login. Cópialo aquí después del paso 2."
+    }
+  ]
+}

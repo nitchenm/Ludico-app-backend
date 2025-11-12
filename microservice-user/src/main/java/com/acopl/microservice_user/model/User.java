@@ -28,6 +28,9 @@ public class User {
     private String email;
 
     @Column(nullable=false)
+    private String password; // Hashed password (BCrypt)
+
+    @Column(nullable=false)
     private String rol;
 
 }

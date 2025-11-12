@@ -11,5 +11,5 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    server-url:
+    service-url:
       defaultZone: http://localhost:${server.port}/eureka/  

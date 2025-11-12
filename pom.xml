@@ -22,10 +22,8 @@
     <module>microservice-config</module>
     <module>microservice-eureka</module>
     <module>microservice-gateway</module>
-    <module>microservice-sale</module>
-    <module>microservice-product</module>
+    <module>microservice-event</module>
     <module>microservice-user</module>
-    <module>microservice-branch</module>
     <module>microservice-swagger-central</module>
   </modules>
 

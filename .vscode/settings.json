@@ -1,4 +1,11 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "spring-boot.ls.java.home": "${JAVA_HOME}",
+    "spring-boot.ls.vmargs": "-Dspring.profiles.active=dev",
+    "spring-boot.application.update-build-configuration": "on-save",
+    "spring-boot.dashboard.showProjects": true,
+    "spring-boot.dashboard.openOnClick": "sideView",
+    "editor.formatOnSave": true,
+    "maven.executable.preferMavenFromPath": true
 }

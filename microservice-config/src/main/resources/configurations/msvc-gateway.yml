@@ -1,31 +1,51 @@
 server:
-  port: 8086
+  port: 8000
 
 spring:
   application:
-    name: msvc-gateway
+    name: microservice-gateway
   cloud:
     gateway:
       discovery:
         locator:
           enabled: false
       routes:
+        - id: auth
+          uri: http://localhost:8050
+          predicates:             
+            - Path=/auth/**
         - id: users
           uri: http://localhost:8050
           predicates:             
             - Path=/api/v1/users/**
-        - id: sale
-          uri: http://localhost:9090
+        - id: events
+          uri: http://localhost:8025
           predicates:
-            - Path=/api/v1/sale/**
-        - id: product
-          uri: http://localhost:8060
+            - Path=/api/v1/events/**
+        - id: api-docs-user
+          uri: http://localhost:8050
           predicates:
-            - Path=/api/v1/product/**
-        - id: branch
-          uri: http://localhost:8070
+            - Path=/v3/api-docs/user
+        - id: api-docs-event
+          uri: http://localhost:8025
           predicates:
-            - Path=/api/v1/branches/**
+            - Path=/v3/api-docs/event
+        - id: api-docs
+          uri: http://localhost:8050
+          predicates:
+            - Path=/v3/api-docs
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            maxAge: 3600
 eureka:
   client:
     register-with-eureka: false
@@ -40,3 +60,9 @@ management:
       show-details: always
   gateway:
     enabled: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: false
