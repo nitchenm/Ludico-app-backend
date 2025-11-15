@@ -15,7 +15,8 @@ import com.acopl.microservice_event.repository.EventChatRepository;
 import com.acopl.microservice_event.repository.ParticipantRepository;
 
 /**
- * WebSocket controller for real-time event chat with JWT authentication and authorization.
+ * WebSocket controller for real-time event chat with JWT authentication and
+ * authorization.
  * Only event participants can send and receive messages.
  */
 @Controller
@@ -39,29 +40,29 @@ public class ChatController {
     @SendTo("/topic/chat")
     public ChatMessage processMessage(@Payload ChatMessage message) {
         var auth = SecurityContextHolder.getContext().getAuthentication();
-        
+
         // Validate authentication
         if (auth == null || auth.getName() == null) {
             message.setSentAt(LocalDateTime.now());
             message.setContent("ERROR: User not authenticated");
             return message;
         }
-        
+
         try {
             Long userId = Long.valueOf(auth.getName());
-            
+
             // Validate user is a participant of this event
             Participant participant = participantRepository
-                .findByEventIdAndUserId(message.getEventId(), userId)
-                .orElse(null);
-            
+                    .findByEventIdAndUserId(message.getEventId(), userId)
+                    .orElse(null);
+
             if (participant == null) {
                 message.setSentAt(LocalDateTime.now());
                 message.setContent("ERROR: User is not a participant of this event");
                 return message;
             }
-            
-            // Persist message with server-side userId (preventing client-side spoofing)
+
+            // Persist message with server-side userId
             EventChat eventChat = EventChat.builder()
                     .eventId(message.getEventId())
                     .userId(userId)
@@ -70,12 +71,12 @@ public class ChatController {
                     .createdAt(LocalDateTime.now())
                     .build();
             chatRepository.save(eventChat);
-            
+
             // Set userId and timestamp from server-side processing
             message.setUserId(userId);
             message.setSentAt(LocalDateTime.now());
             return message;
-            
+
         } catch (NumberFormatException e) {
             message.setSentAt(LocalDateTime.now());
             message.setContent("ERROR: Invalid user ID in token");

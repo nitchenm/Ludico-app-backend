@@ -11,7 +11,7 @@ import com.acopl.microservice_user.dto.SaleDTO;
 @FeignClient(name = "msvc-sale", url = "localhost:9090")
 public interface clientSale {
 
-    @GetMapping ("api/v1/sale/search-by-id/{id}")
+    @GetMapping("api/v1/sale/search-by-id/{id}")
     List<SaleDTO> findAllSaleByUser(@PathVariable Long id);
 
 }

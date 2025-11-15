@@ -1,12 +1,14 @@
 package com.acopl.microservice_event.security;
 
 import java.security.Key;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
@@ -15,6 +17,9 @@ public class JwtUtil {
 
     @Value("${jwt.secret:ZmFrZXNlY3JldGtleWZha2U=}")
     private String secretBase64;
+
+    @Value("${jwt.expiration:86400000}") // 24 horas en ms
+    private long jwtExpiration;
 
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretBase64);
@@ -29,8 +34,19 @@ public class JwtUtil {
                 .getBody();
     }
 
+    public String generateToken(String email, Long userId) {
+        return Jwts.builder()
+                .setSubject(String.valueOf(userId))
+                .claim("email", email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
     /**
      * Extracts the userId (subject claim) from a JWT token
+     * 
      * @param token the JWT token
      * @return the userId as Long, or null if token is invalid
      */
@@ -47,6 +63,7 @@ public class JwtUtil {
 
     /**
      * Extracts the email from JWT token claims
+     * 
      * @param token the JWT token
      * @return the email, or null if token is invalid
      */
