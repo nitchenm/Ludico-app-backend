@@ -30,6 +30,7 @@ public class EventService {
                 throw new IllegalArgumentException("Creador no encontrado");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("No se pudo crear el evento.");
         }
 

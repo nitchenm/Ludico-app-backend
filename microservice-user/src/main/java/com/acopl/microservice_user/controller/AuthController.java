@@ -2,6 +2,7 @@ package com.acopl.microservice_user.controller;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestParam String email, @RequestParam String password, @RequestParam(required = false, defaultValue = "USER") String rol, @RequestParam(required = false) String name) {
+    public ResponseEntity<?> register(@RequestParam String email, @RequestParam String password,
+            @RequestParam(required = false, defaultValue = "USER") String rol,
+            @RequestParam(required = false) String name) {
         // Check if user already exists
         if (userRepository.findByEmail(email).isPresent()) {
             return ResponseEntity.badRequest().body("User already exists");
@@ -37,7 +40,7 @@ public class AuthController {
         User u = new User();
         u.setEmail(email);
         u.setPassword(passwordEncoder.encode(password));
-        u.setRol(rol);
+        u.setRole(rol);
         u.setName(name != null ? name : email);
         userRepository.save(u);
         return ResponseEntity.ok("User registered successfully");
@@ -46,7 +49,9 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
         User u = userRepository.findByEmail(email).orElse(null);
-        if (u == null) return ResponseEntity.status(401).body("Invalid credentials");
+        if (u == null) {
+            return ResponseEntity.status(401).body("Invalid credentials");
+        }
         // Verify password using BCrypt
         if (!passwordEncoder.matches(password, u.getPassword())) {
             return ResponseEntity.status(401).body("Invalid credentials");
@@ -55,4 +60,3 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("token", token, "userId", u.getId(), "email", u.getEmail()));
     }
 }
-

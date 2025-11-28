@@ -19,6 +19,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.acopl.microservice_user.client.clientSale;
@@ -38,6 +39,9 @@ public class UserServiceTest {
     @Mock
     private clientSale clientSale;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private UserService userService;
 
@@ -50,7 +54,7 @@ public class UserServiceTest {
         user.setId(1L);
         user.setName("Test User");
         user.setEmail("test@duocuc.cl");
-        user.setRol("USER");
+        user.setRole("USER");
     }
 
     //////// PARA EL METODO saveUser
@@ -60,13 +64,13 @@ public class UserServiceTest {
         userDTO.setId(1L);
         userDTO.setName("Test User");
         userDTO.setEmail("test@duocuc.cl");
-        userDTO.setRol("USER");
+        userDTO.setRole("USER");
 
         User savedUser = new User();
         savedUser.setId(1L);
         savedUser.setName("Test User");
         savedUser.setEmail("test@duocuc.cl");
-        savedUser.setRol("USER");
+        savedUser.setRole("USER");
 
         when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
@@ -76,10 +80,8 @@ public class UserServiceTest {
         assertEquals(userDTO.getId(), result.getId());
         assertEquals(userDTO.getName(), result.getName());
         assertEquals(userDTO.getEmail(), result.getEmail());
-        assertEquals(userDTO.getRol(), result.getRol());
+        assertEquals(userDTO.getRole(), result.getRole());
     }
-
-
 
     //////// PARA EL METODO updateUser
     @Test
@@ -87,19 +89,19 @@ public class UserServiceTest {
         UserDTO updatedUserDTO = new UserDTO();
         updatedUserDTO.setName("Updated User");
         updatedUserDTO.setEmail("updated@duocuc.cl");
-        updatedUserDTO.setRol("ADMIN");
+        updatedUserDTO.setRole("ADMIN");
 
         User existingUser = new User();
         existingUser.setId(1L);
         existingUser.setName("Test User");
         existingUser.setEmail("test@duocuc.cl");
-        existingUser.setRol("USER");
+        existingUser.setRole("USER");
 
         User updatedUser = new User();
         updatedUser.setId(1L);
         updatedUser.setName("Updated User");
         updatedUser.setEmail("updated@duocuc.cl");
-        updatedUser.setRol("ADMIN");
+        updatedUser.setRole("ADMIN");
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
         when(userRepository.save(any(User.class))).thenReturn(updatedUser);
@@ -109,7 +111,7 @@ public class UserServiceTest {
         assertNotNull(result);
         assertEquals(updatedUserDTO.getName(), result.getName());
         assertEquals(updatedUserDTO.getEmail(), result.getEmail());
-        assertEquals(updatedUserDTO.getRol(), result.getRol());
+        assertEquals(updatedUserDTO.getRole(), result.getRole());
     }
 
     @Test
@@ -122,7 +124,7 @@ public class UserServiceTest {
         assertEquals(user.getId(), result.getId());
         assertEquals(user.getName(), result.getName());
         assertEquals(user.getEmail(), result.getEmail());
-        assertEquals(user.getRol(), result.getRol());
+        assertEquals(user.getRole(), result.getRole());
     }
 
     //////// PARA EL METODO findall
@@ -134,15 +136,13 @@ public class UserServiceTest {
         assertEquals(1, users.size());
     }
 
-
-    //////// PARA EL METODO deleteById 
+    //////// PARA EL METODO deleteById
     @Test
     void testDeleteById() {
         doNothing().when(userRepository).deleteById(1L);
         userService.deleteById(1L);
         verify(userRepository, times(1)).deleteById(1L);
     }
-
 
     //////// PARA EL METEDO authenticateById //////////
     @Test
@@ -204,7 +204,7 @@ public class UserServiceTest {
 
     @Test
     void testAuthenticateById_userRolNull() {
-        user.setRol(null);
+        user.setRole(null);
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         boolean authenticated = userService.authenticateById(1L, "test@duocuc.cl", "USER");
         assertFalse(authenticated);
@@ -227,7 +227,7 @@ public class UserServiceTest {
         UserDTO updatedUserDTO = new UserDTO();
         updatedUserDTO.setName("Updated User");
         updatedUserDTO.setEmail("updated@duocuc.cl");
-        updatedUserDTO.setRol("ADMIN");
+        updatedUserDTO.setRole("ADMIN");
 
         when(userRepository.findById(99L)).thenReturn(Optional.empty());
 
@@ -254,7 +254,7 @@ public class UserServiceTest {
         User user = new User();
         user.setId(1L);
         user.setEmail("test@duocuc.cl");
-        user.setRol("USER");
+        user.setRole("USER");
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
         boolean result = userService.authenticateById(1L, "wrong@duocuc.cl", "ADMIN");

@@ -4,10 +4,10 @@ spring:
   application:
     name: msvc-user
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ludicodbts
-    username: root
-    password:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ludico_db
+    username: user
+    password: password
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -15,8 +15,8 @@ spring:
       init:
         mode: always
     show-sql: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
   secret: aW1wb3J0YW50X3NlY3JldF9jaGFuZ2VfdGhpc19pbl9wcm9kdWN0aW9uX3RvX2tSMjU2X2tleQ==

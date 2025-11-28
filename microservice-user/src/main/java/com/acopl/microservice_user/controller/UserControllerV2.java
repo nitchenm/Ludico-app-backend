@@ -54,9 +54,7 @@ public class UserControllerV2 {
                 .toList();
         return ResponseEntity.ok(
                 CollectionModel.of(userModels,
-                        linkTo(methodOn(UserControllerV2.class).listAllUsers()).withSelfRel()
-                )
-        );
+                        linkTo(methodOn(UserControllerV2.class).listAllUsers()).withSelfRel()));
     }
 
     @GetMapping("/{id}")
@@ -93,7 +91,7 @@ public class UserControllerV2 {
             UserDTO userToUpdate = userService.findById(id);
             userToUpdate.setName(updatedUser.getName());
             userToUpdate.setEmail(updatedUser.getEmail());
-            userToUpdate.setRol(updatedUser.getRol());
+            userToUpdate.setRole(updatedUser.getRole());
             UserDTO savedUser = userService.saveUser(userToUpdate);
             return ResponseEntity.ok(assembler.toModel(savedUser));
         } catch (Exception e) {

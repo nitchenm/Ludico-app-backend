@@ -23,7 +23,7 @@ class UserModelAssemblerTest {
         userDTO.setId(1L);
         userDTO.setName("Test User");
         userDTO.setEmail("test@duocuc.cl");
-        userDTO.setRol("USER");
+        userDTO.setRole("USER");
     }
 
     @Test

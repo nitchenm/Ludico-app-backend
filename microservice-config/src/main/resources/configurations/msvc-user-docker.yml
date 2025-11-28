@@ -1,12 +1,12 @@
 server:
-  port: 8025
+  port: 8080
 
 spring:
   application:
-    name: microservice-event
+    name: msvc-user
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ludico_db
+    url: jdbc:postgresql://postgres:5432/ludico_db
     username: user
     password: password
   jpa:
@@ -25,12 +25,10 @@ jwt:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: msvc-user
+    prefer-ip-address: false
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-
-file:
-  upload:
-    max-size: 5242880
-    directory: uploads/events
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true

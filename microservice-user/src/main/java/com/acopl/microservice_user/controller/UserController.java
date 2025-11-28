@@ -39,8 +39,8 @@ public class UserController {
     @GetMapping
     @Operation(summary = "Listar todos los usuarios", description = "Obtiene una lista de todos los usuarios registrados.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Lista de usuarios encontrada"),
-        @ApiResponse(responseCode = "204", description = "No hay usuarios registrados")
+            @ApiResponse(responseCode = "200", description = "Lista de usuarios encontrada"),
+            @ApiResponse(responseCode = "204", description = "No hay usuarios registrados")
     })
     public ResponseEntity<List<UserDTO>> listAllUsers() {
         List<UserDTO> users = userService.findall();
@@ -52,12 +52,11 @@ public class UserController {
     @GetMapping("/{id}")
     @Operation(summary = "Buscar usuario por ID", description = "Obtiene los detalles de un usuario específico por su ID.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Usuario encontrado"),
-        @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
+            @ApiResponse(responseCode = "200", description = "Usuario encontrado"),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
     })
     public ResponseEntity<UserDTO> findById(
-        @Parameter(description = "ID del usuario", required = true)
-        @PathVariable Long id) {
+            @Parameter(description = "ID del usuario", required = true) @PathVariable Long id) {
         try {
             UserDTO user = userService.findById(id);
             return ResponseEntity.ok(user);
@@ -70,24 +69,13 @@ public class UserController {
     @Operation(summary = "Guardar un nuevo usuario", description = "Crea un nuevo usuario con la información proporcionada.")
     @ApiResponse(responseCode = "201", description = "Usuario creado exitosamente")
     public ResponseEntity<UserDTO> saveUser(
-        @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            description = "Objeto UserDTO que representa el usuario a crear",
-            required = true,
-            content = @Content(
-                schema = @Schema(implementation = UserDTO.class),
-                examples = @ExampleObject(
-                    value = """
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Objeto UserDTO que representa el usuario a crear", required = true, content = @Content(schema = @Schema(implementation = UserDTO.class), examples = @ExampleObject(value = """
                     {
                     "name": "Juan Pérez",
                     "email": "juan@email.com",
                     "rol": "USER"
                     }
-                    """
-                )
-            )
-        )
-        @RequestBody UserDTO user
-    ) {
+                    """))) @RequestBody UserDTO user) {
         UserDTO newUser = userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
@@ -95,19 +83,18 @@ public class UserController {
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar usuario", description = "Actualiza la información de un usuario existente.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Usuario actualizado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
+            @ApiResponse(responseCode = "200", description = "Usuario actualizado exitosamente"),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
     })
     public ResponseEntity<UserDTO> updateUser(
-        @Parameter(description = "ID del usuario", required = true)
-        @PathVariable Long id,
-        @RequestBody UserDTO updatedUser) {
+            @Parameter(description = "ID del usuario", required = true) @PathVariable Long id,
+            @RequestBody UserDTO updatedUser) {
         try {
             UserDTO userToUpdate = userService.findById(id);
 
             userToUpdate.setName(updatedUser.getName());
             userToUpdate.setEmail(updatedUser.getEmail());
-            userToUpdate.setRol(updatedUser.getRol());
+            userToUpdate.setRole(updatedUser.getRole());
 
             userService.saveUser(userToUpdate);
 
@@ -120,12 +107,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar usuario", description = "Elimina un usuario existente por su ID.")
     @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Usuario eliminado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
+            @ApiResponse(responseCode = "204", description = "Usuario eliminado exitosamente"),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado")
     })
     public ResponseEntity<Void> deleteUser(
-        @Parameter(description = "ID del usuario", required = true)
-        @PathVariable Long id){
+            @Parameter(description = "ID del usuario", required = true) @PathVariable Long id) {
         try {
             userService.deleteById(id);
             return ResponseEntity.noContent().build();
@@ -137,8 +123,8 @@ public class UserController {
     @PostMapping("/authenticate-id")
     @Operation(summary = "Autenticar usuario por ID", description = "Valida las credenciales de un usuario por ID, email y rol.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Autenticación exitosa"),
-        @ApiResponse(responseCode = "401", description = "Credenciales inválidas")
+            @ApiResponse(responseCode = "200", description = "Autenticación exitosa"),
+            @ApiResponse(responseCode = "401", description = "Credenciales inválidas")
     })
     public ResponseEntity<String> authenticateById(
             @RequestParam Long id,
@@ -157,16 +143,15 @@ public class UserController {
     @GetMapping("/search-sale-by-id/{id}")
     @Operation(summary = "Buscar ventas por usuario", description = "Obtiene todas las ventas asociadas a un usuario por su ID.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Ventas encontradas"),
-        @ApiResponse(responseCode = "404", description = "Usuario o ventas no encontradas")
+            @ApiResponse(responseCode = "200", description = "Ventas encontradas"),
+            @ApiResponse(responseCode = "404", description = "Usuario o ventas no encontradas")
     })
     public ResponseEntity<List<SaleDTO>> findAllSaleByUser(
-        @Parameter(description = "ID del usuario", required = true)
-        @PathVariable Long id) {
+            @Parameter(description = "ID del usuario", required = true) @PathVariable Long id) {
         try {
             List<SaleDTO> saleList = userService.findAllSaleByUser(id);
             return ResponseEntity.ok(saleList);
-        } catch  (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }

@@ -1,5 +1,9 @@
 package com.acopl.microservice_user.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +17,26 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
 
     private Long id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
+    @Email
     private String email;
-    private String rol;
+
+    @NotBlank
+    private String password;
+
+    @JsonIgnore
+    private String role;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
 
 }

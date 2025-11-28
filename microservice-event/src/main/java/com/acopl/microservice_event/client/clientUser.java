@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.acopl.microservice_event.dto.UserDTO;
 
-@FeignClient(name = "microservice-user", url = "http://localhost:8050")
+@FeignClient(name = "msvc-user")
 public interface clientUser {
 
     @GetMapping("/api/v1/users/{id}")

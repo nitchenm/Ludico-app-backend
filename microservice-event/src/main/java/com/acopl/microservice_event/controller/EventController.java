@@ -17,7 +17,7 @@ import com.acopl.microservice_event.repository.ParticipantRepository;
 import com.acopl.microservice_event.service.EventService;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/api/v1/events")
 public class EventController {
     private final EventService eventService;
     private final ParticipantRepository participantRepository;
@@ -29,7 +29,8 @@ public class EventController {
 
     @PostMapping
     public ResponseEntity<Event> create(@RequestBody Event event) {
-        if (event.getCreatedAt() == null) event.setCreatedAt(LocalDateTime.now());
+        if (event.getCreatedAt() == null)
+            event.setCreatedAt(LocalDateTime.now());
         Event saved = eventService.create(event);
         return ResponseEntity.ok(saved);
     }
@@ -47,12 +48,14 @@ public class EventController {
     @PostMapping("/{id}/join")
     public ResponseEntity<String> joinEvent(@PathVariable Long id) {
         var auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || auth.getName() == null) return ResponseEntity.status(401).body("Unauthorized");
+        if (auth == null || auth.getName() == null)
+            return ResponseEntity.status(401).body("Unauthorized");
         Long userId = Long.valueOf(auth.getName());
         if (participantRepository.existsByEventIdAndUserId(id, userId)) {
             return ResponseEntity.badRequest().body("Already joined");
         }
-        Participant p = Participant.builder().eventId(id).userId(userId).joinedAt(LocalDateTime.now()).status("ACTIVE").build();
+        Participant p = Participant.builder().eventId(id).userId(userId).joinedAt(LocalDateTime.now()).status("ACTIVE")
+                .build();
         participantRepository.save(p);
         return ResponseEntity.ok("Joined");
     }
@@ -60,7 +63,8 @@ public class EventController {
     @PostMapping("/{id}/leave")
     public ResponseEntity<String> leaveEvent(@PathVariable Long id) {
         var auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || auth.getName() == null) return ResponseEntity.status(401).body("Unauthorized");
+        if (auth == null || auth.getName() == null)
+            return ResponseEntity.status(401).body("Unauthorized");
         Long userId = Long.valueOf(auth.getName());
         List<Participant> list = participantRepository.findByEventId(id);
         for (Participant p : list) {

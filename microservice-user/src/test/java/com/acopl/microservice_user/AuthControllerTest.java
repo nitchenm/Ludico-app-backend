@@ -62,7 +62,7 @@ class AuthControllerTest {
         // store encoded password so PasswordEncoder.matches works in tests
         testUser.setPassword(passwordEncoder.encode("Password123"));
         testUser.setName("Test User");
-        testUser.setRol("USER");
+        testUser.setRole("USER");
     }
 
     /**

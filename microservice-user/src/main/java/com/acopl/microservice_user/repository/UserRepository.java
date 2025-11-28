@@ -8,4 +8,8 @@ import com.acopl.microservice_user.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
+
+    Boolean existsByName(String username);
+
+    Boolean existsByEmail(String email);
 }

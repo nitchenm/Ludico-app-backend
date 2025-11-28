@@ -1,6 +1,6 @@
 spring:
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://config-server:8888
   application:
     name: microservice-event
   profiles:
@@ -10,14 +10,20 @@ spring:
       fail-fast: false
     discovery:
       enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ludico_db
+    username: user
+    password: password
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: false
+    database: postgresql
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8025
