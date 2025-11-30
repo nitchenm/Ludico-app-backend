@@ -5,19 +5,16 @@ spring:
   application:
     name: microservice-event
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ludico_db
-    username: user
-    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ludico_db?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: 
   jpa:
     hibernate:
       ddl-auto: create-drop
-    sql:
-      init:
-        mode: always
     show-sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
 
 jwt:
   secret: aW1wb3J0YW50X3NlY3JldF9jaGFuZ2VfdGhpc19pbl9wcm9kdWN0aW9uX3RvX2tSMjU2X2tleQ==

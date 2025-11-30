@@ -1,10 +1,13 @@
+C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\client\clientUser.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\CorsConfig.java
+C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\FeignClientConfig.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketChannelInterceptor.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketConfig.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\ChatController.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventController.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventImageController.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\ChatMessage.java
+C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\UserDTO.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\Event.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventChat.java
 C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventImage.java
