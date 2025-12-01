@@ -90,6 +90,16 @@
             "projectName": "microservice-swagger-central",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceSupportApplication<microservice-support>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.acopl.microservice_support.MicroserviceSupportApplication",
+            "projectName": "microservice-support",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
