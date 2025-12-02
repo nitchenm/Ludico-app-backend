@@ -1,7 +1,6 @@
 package com.acopl.microservice_support.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,15 +22,17 @@ public class SupportController {
     @PostMapping
     public ResponseEntity<SupportTicket> createTicket(@RequestBody SupportTicket ticket) {
         // Extraer el ID del usuario autenticado desde el Token JWT
-        var auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.getName() != null) {
-            try {
-                Long userId = Long.valueOf(auth.getName());
-                ticket.setUserId(userId);
-            } catch (NumberFormatException e) {
-                // Manejar caso anónimo o error
-            }
-        }
+        /*
+         * var auth = SecurityContextHolder.getContext().getAuthentication();
+         * if (auth != null && auth.getName() != null) {
+         * try {
+         * Long userId = Long.valueOf(auth.getName());
+         * ticket.setUserId(userId);
+         * } catch (NumberFormatException e) {
+         * // Manejar caso anónimo o error
+         * }
+         * }
+         */
         SupportTicket created = supportService.createTicket(ticket);
         return ResponseEntity.ok(created);
     }

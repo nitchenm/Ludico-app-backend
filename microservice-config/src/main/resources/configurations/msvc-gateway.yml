@@ -35,6 +35,10 @@ spring:
           uri: lb://msvc-user
           predicates:
             - Path=/v3/api-docs
+        - id: support
+          uri: lb://microservice-support
+          predicates:
+              - Path=/api/v1/support/**
       globalcors:
         corsConfigurations:
           '[/**]':
