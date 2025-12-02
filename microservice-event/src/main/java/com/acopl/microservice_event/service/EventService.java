@@ -24,12 +24,17 @@ public class EventService {
     }
 
     public Event create(Event event) {
+        System.out.println("--> Iniciando creación de evento. Creator ID recibido: " + event.getCreatorId());
         try {
             UserDTO user = userClient.getUserById(event.getCreatorId());
+            if (event.getCreatorId() == null || event.getCreatorId() <= 0) {
+                throw new IllegalArgumentException("El Creator ID es inválido: " + event.getCreatorId());
+            }
             if (user == null) {
                 throw new IllegalArgumentException("Creador no encontrado");
             }
         } catch (Exception e) {
+            System.err.println("--> Error al validar usuario en EventService:");
             e.printStackTrace();
             throw new RuntimeException("No se pudo crear el evento.");
         }
