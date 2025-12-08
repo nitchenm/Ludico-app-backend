@@ -1,6 +1,6 @@
 package com.acopl.microservice_support.service;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,28 @@ public class SupportService {
     }
 
     public SupportTicket createTicket(SupportTicket ticket) {
-        ticket.setCreatedAt(LocalDateTime.now());
-        ticket.setStatus("OPEN");
+        if (ticket.getStatus() == null) ticket.setStatus("OPEN");
         return repository.save(ticket);
+    }
+
+    public Optional<SupportTicket> getTicketById(Long id) {
+        return repository.findById(id);
+    }
+
+    public SupportTicket updateTicket(Long id, SupportTicket incoming) {
+        return repository.findById(id).map(t -> {
+            if (incoming.getSubject() != null) t.setSubject(incoming.getSubject());
+            if (incoming.getDescription() != null) t.setDescription(incoming.getDescription());
+            if (incoming.getStatus() != null) t.setStatus(incoming.getStatus());
+            return repository.save(t);
+        }).orElse(null);
+    }
+
+    public boolean deleteTicket(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

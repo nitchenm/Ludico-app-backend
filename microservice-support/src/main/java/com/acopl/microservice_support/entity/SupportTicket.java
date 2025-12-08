@@ -37,6 +37,4 @@ public class SupportTicket {
 
     private String status;
 
-    private LocalDateTime createdAt;
-
 }
