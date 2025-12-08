@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.acopl.microservice_event.entity.Event;
 
 @Repository
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<Event, String> {
     List<Event> findByGameType(String gameType);
 }

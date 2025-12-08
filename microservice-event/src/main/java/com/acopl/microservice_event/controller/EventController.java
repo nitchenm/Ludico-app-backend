@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +45,19 @@ public class EventController {
     @GetMapping("/type/{gameType}")
     public ResponseEntity<List<Event>> byType(@PathVariable String gameType) {
         return ResponseEntity.ok(eventService.findByGameType(gameType));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable String id, @RequestBody Event event) {
+        System.out.println("Buscando evento con ID: " + id);
+        Event updatedEvent = eventService.update(id, event);
+        return ResponseEntity.ok(updatedEvent);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable String id) {
+        eventService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{id}/join")

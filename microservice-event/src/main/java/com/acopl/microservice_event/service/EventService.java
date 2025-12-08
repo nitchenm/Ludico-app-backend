@@ -24,12 +24,17 @@ public class EventService {
     }
 
     public Event create(Event event) {
+        System.out.println("--> Iniciando creación de evento. Creator ID recibido: " + event.getCreatorId());
         try {
             UserDTO user = userClient.getUserById(event.getCreatorId());
+            if (event.getCreatorId() == null || event.getCreatorId() <= 0) {
+                throw new IllegalArgumentException("El Creator ID es inválido: " + event.getCreatorId());
+            }
             if (user == null) {
                 throw new IllegalArgumentException("Creador no encontrado");
             }
         } catch (Exception e) {
+            System.err.println("--> Error al validar usuario en EventService:");
             e.printStackTrace();
             throw new RuntimeException("No se pudo crear el evento.");
         }
@@ -39,7 +44,7 @@ public class EventService {
         return savedEvent;
     }
 
-    public Optional<Event> findById(Long id) {
+    public Optional<Event> findById(String id) {
         return eventRepository.findById(id);
     }
 
@@ -49,5 +54,22 @@ public class EventService {
 
     public List<Event> findByGameType(String gameType) {
         return eventRepository.findByGameType(gameType);
+    }
+
+    public Event update(String id, Event eventDetails) {
+        System.out.println("Buscando evento con ID: " + id);
+        String cleanId = id.trim();
+        Event event = eventRepository.findById(cleanId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+        event.setTitle(eventDetails.getTitle());
+        event.setDescription(eventDetails.getDescription());
+        event.setGameType(eventDetails.getGameType());
+        event.setCreatedAt(eventDetails.getCreatedAt());
+        event.setCapacity(eventDetails.getCapacity());
+        return eventRepository.save(event);
+    }
+
+    public void delete(String id) {
+        eventRepository.deleteById(id);
     }
 }
