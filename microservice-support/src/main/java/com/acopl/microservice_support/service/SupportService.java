@@ -17,12 +17,17 @@ public class SupportService {
         this.repository = repository;
     }
 
+    public List<SupportTicket> findAll() {
+        return repository.findAll();
+    }
+
     public List<SupportTicket> getTicketsByUserId(Long userId) {
         return repository.findByUserId(userId);
     }
 
     public SupportTicket createTicket(SupportTicket ticket) {
-        if (ticket.getStatus() == null) ticket.setStatus("OPEN");
+        if (ticket.getStatus() == null)
+            ticket.setStatus("OPEN");
         return repository.save(ticket);
     }
 
@@ -32,9 +37,12 @@ public class SupportService {
 
     public SupportTicket updateTicket(Long id, SupportTicket incoming) {
         return repository.findById(id).map(t -> {
-            if (incoming.getSubject() != null) t.setSubject(incoming.getSubject());
-            if (incoming.getDescription() != null) t.setDescription(incoming.getDescription());
-            if (incoming.getStatus() != null) t.setStatus(incoming.getStatus());
+            if (incoming.getSubject() != null)
+                t.setSubject(incoming.getSubject());
+            if (incoming.getDescription() != null)
+                t.setDescription(incoming.getDescription());
+            if (incoming.getStatus() != null)
+                t.setStatus(incoming.getStatus());
             return repository.save(t);
         }).orElse(null);
     }
