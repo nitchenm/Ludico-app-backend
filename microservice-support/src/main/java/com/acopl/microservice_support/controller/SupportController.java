@@ -1,5 +1,10 @@
 package com.acopl.microservice_support.controller;
+import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.acopl.microservice_support.entity.SupportTicket;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +26,12 @@ public class SupportController {
 
     public SupportController(SupportService service) {
         this.service = service;
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<SupportTicket>> getByUser(@PathVariable Long userId) {
+        List<SupportTicket> tickets = service.getTicketsByUserId(userId);
+        return tickets.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(tickets);
     }
 
     @PostMapping

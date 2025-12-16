@@ -1,25 +1,25 @@
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\client\clientUser.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\CorsConfig.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\FeignClientConfig.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketChannelInterceptor.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketConfig.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\ChatController.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventController.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventImageController.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\ChatMessage.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\UserDTO.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\Event.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventChat.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventImage.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\Participant.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\MicroserviceEventApplication.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventChatRepository.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventImageRepository.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventRepository.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\ParticipantRepository.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\JwtAuthenticationFilter.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\JwtUtil.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\SecurityConfig.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\ChatService.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\EventService.java
-C:\Users\nitch\Desktop\Proyectos Freelance\Ludico-backend\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\FileStorageService.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\client\clientUser.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\CorsConfig.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\FeignClientConfig.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketChannelInterceptor.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\config\WebSocketConfig.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\ChatController.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventController.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\controller\EventImageController.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\ChatMessage.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\dto\UserDTO.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\Event.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventChat.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\EventImage.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\entity\Participant.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\MicroserviceEventApplication.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventChatRepository.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventImageRepository.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\EventRepository.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\repository\ParticipantRepository.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\JwtAuthenticationFilter.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\JwtUtil.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\security\SecurityConfig.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\ChatService.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\EventService.java
+C:\workspace\Ludico-app-backend\microservice-event\src\main\java\com\acopl\microservice_event\service\FileStorageService.java

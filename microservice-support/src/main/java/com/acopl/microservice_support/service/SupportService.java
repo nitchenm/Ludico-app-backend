@@ -1,5 +1,6 @@
 package com.acopl.microservice_support.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -14,6 +15,10 @@ public class SupportService {
 
     public SupportService(SupportTicketRepository repository) {
         this.repository = repository;
+    }
+
+    public List<SupportTicket> getTicketsByUserId(Long userId) {
+        return repository.findByUserId(userId);
     }
 
     public SupportTicket createTicket(SupportTicket ticket) {
